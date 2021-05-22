@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="IwaraMediaManager.WPF.IwaraControls.VideosPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IwaraMediaManager.WPF.IwaraControls"
+             xmlns:iwaraControls="clr-namespace:IwaraMediaManager.WPF.IwaraControls"
+             xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             DataContext="{Binding Source={StaticResource ServiceLocator}, Path=VideoPageViewModel}">
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="VideoListContainer" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ui:AutoSuggestBox x:Name="VideoSearchAutoSuggestBox" VerticalContentAlignment="Center" Padding="5,0" FontSize="18" Margin="8,8,0,8"
+                               PlaceholderText="Search" QueryIcon="Find"
+                               ItemsSource="{Binding AutoSuggestValues}"
+                               Text="{Binding AutoSuggestBoxInput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               QuerySubmitted="VideoSearchAutoSuggestBox_QuerySubmitted"
+                               TextChanged="VideoSearchAutoSuggestBox_TextChanged"/>
+
+            <ui:SimpleStackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <ui:SplitButton Margin="0,0,10,0" Height="30" Command="{Binding ToggleSortOrderCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconpacks:PackIconBoxIcons Kind="{Binding SelectedVideoSortOption.IconKind}" />
+                        <iconpacks:PackIconBoxIcons Margin="5,0,0,0" Kind="{Binding SelectedVideoSortOption.SortedAscending, Converter={StaticResource BoolToSortOrderConverter}}" />
+                    </StackPanel>
+                    <ui:SplitButton.Flyout>
+                        <ui:Flyout>
+                            <ui:GridView ItemsSource="{Binding VideoSortOptions}" SelectedItem="{Binding SelectedVideoSortOption}" 
+                                         SelectedIndex="0" Padding="0">
+                                <ui:GridView.ItemContainerStyle>
+                                    <Style TargetType="ui:GridViewItem">
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="MinWidth" Value="0"/>
+                                        <Setter Property="MinHeight" Value="50"/>
+                                    </Style>
+                                </ui:GridView.ItemContainerStyle>
+                                <ui:GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Width="70">
+                                            <iconpacks:PackIconBoxIcons Kind="{Binding IconKind}" Foreground="White" HorizontalAlignment="Center" />
+                                            <Label Content="{Binding Name}" HorizontalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ui:GridView.ItemTemplate>
+                            </ui:GridView>
+                        </ui:Flyout>
+                    </ui:SplitButton.Flyout>
+                </ui:SplitButton>
+
+                <ToggleButton ToolTip="Filter after favorites" IsChecked="{Binding FavoriteFilterOn}" Width="30" Height="30" Padding="0" Margin="0,0,10,0">
+                    <iconpacks:PackIconBoxIcons Kind="SolidHeart" />
+                </ToggleButton>
+
+                <Button Width="30" Height="30" Command="{Binding LastPageCommand}" Padding="0">
+                    <iconpacks:PackIconBoxIcons Kind="SolidLeftArrowCircle" />
+                </Button>
+                <TextBlock Width="16" Text="{Binding CurrentPage, Converter={StaticResource IncreaseOneConverter}}" FontSize="15" Margin="10,0,5,0" VerticalAlignment="Center" TextAlignment="Right" />
+                <TextBlock Text="/" FontSize="15" VerticalAlignment="Center" />
+                <TextBlock Width="16" Text="{Binding MaxPage, Converter={StaticResource IncreaseOneConverter}}" FontSize="15" Margin="5,0,10,0" VerticalAlignment="Center" TextAlignment="Left" />
+                <Button Width="30" Height="30" Command="{Binding NextPageCommand}" Margin="0,0,10,0" Padding="0">
+                    <iconpacks:PackIconBoxIcons Kind="SolidRightArrowCircle" />
+                </Button>
+                <Button Width="30" Height="30" Command="{Binding RefreshVideosCommand}" Padding="0">
+                    <iconpacks:PackIconBoxIcons Kind="RegularRefresh" />
+                </Button>
+            </ui:SimpleStackPanel>
+
+            <iwaraControls:VideoListControl x:Name="VideoList" VideoCollectionView="{Binding VideoCollectionView}" SelectedVideo="{Binding SelectedVideo, Mode=TwoWay}" 
+                                            ThumpnailWidth="{Binding ThumpnailSize}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" />
+        </Grid>
+
+        <Grid x:Name="VideoDetailGrid" Grid.RowSpan="2" Grid.Column="1" Margin="5" Background="#1AFFFFFF">
+            <Image x:Name="VideoDetailsBackgroundImage" Stretch="Uniform" Opacity="0.9"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="Fant" UseLayoutRounding="true" Height="400" Margin="20,0">
+            </Image>
+            <ScrollViewer x:Name="DetailScrollViewer" VerticalScrollBarVisibility="Hidden">
+                <ui:SimpleStackPanel>
+                    <iwaraControls:IwaraPlayerControl x:Name="IwaraPlayer"
+                        MinHeight="200" VerticalAlignment="Top"
+                        SelectedVideoViewModel="{Binding SelectedVideo}" 
+                        NextVideoCommand="{Binding NextVideoCommand}"
+                        PreviousVideoCommand="{Binding PreviousVideoCommand}"
+                        MaxHeight="{Binding ElementName=VideoDetailGrid, Path=ActualHeight}"/>
+
+                    <Border Background="#A0000000" Padding="10">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <ToggleButton IsChecked="{Binding SelectedVideo.IsFavorite}" Command="{Binding SetVideoFavoriteCommand}" ToolTip="Favorite" Width="30" Height="30" Padding="0" Margin="0,0,10,0">
+                                    <iconpacks:PackIconBoxIcons Kind="SolidHeart" />
+                                </ToggleButton>
+                                <Button ToolTip="Go to Iwara artist page" Click="Button_GoToArtistPage" Width="30" Height="30" Padding="0" Margin="0,0,10,0">
+                                    <iconpacks:PackIconBoxIcons Foreground="{StaticResource SystemControlForegroundAccentBrush}" Kind="SolidUser" />
+                                </Button>
+                                <Button ToolTip="Show video on Iwara" Width="30" Height="30" Click="Button_GoToVideoUrl" Padding="0" Margin="0,0,10,0" 
+                                        IsEnabled="{Binding SelectedVideo.UrlIwara, Converter={StaticResource NullToBoolConverter}}" >
+                                    <iconpacks:PackIconBoxIcons Foreground="{StaticResource SystemControlForegroundAccentBrush}" Kind="RegularPlay" />
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Command="{Binding SelectedVideo.OpenFolderCommand}" ToolTip="Open Folder" Width="30" Height="30" Padding="0" Margin="0,0,10,0">
+                                    <iconpacks:BoxIcons Kind="RegularFolder" />
+                                </Button>
+                                <Button x:Name="VideoThumpnailBackground" Click="ButtonClick_OpenVideo" Width="30" Height="30" Padding="0" HorizontalAlignment="Right" ToolTip="Show in seperate window">
+                                    <iconpacks:PackIconBoxIcons Kind="RegularExport" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <ui:SimpleStackPanel x:Name="DetailDataStackPanel" VerticalAlignment="Stretch" MinHeight="400" Margin="10">
+                        <TextBlock Text="{Binding SelectedVideo.Name}" FontSize="20" Margin="5" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding SelectedVideo.Artist.Name}" FontSize="14" Margin="5" />
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock FontSize="14" Text="File Created: "></TextBlock>
+                            <TextBlock Text="{Binding SelectedVideo.FileCreated, StringFormat={}{0:dd.MM.yyyy}}" FontSize="14" />
+                        </StackPanel>
+                    </ui:SimpleStackPanel>
+                </ui:SimpleStackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

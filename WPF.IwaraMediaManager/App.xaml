@@ -1,0 +1,32 @@
+﻿<Application x:Class="WPF.IwaraMediaManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF.IwaraMediaManager"
+             xmlns:base="clr-namespace:IwaraMediaManager.WPF.Base"
+             xmlns:converter="clr-namespace:IwaraMediaManager.WPF.Converters"
+             Startup="Application_Startup"
+             xmlns:ui="http://schemas.modernwpf.com/2019">
+    <Application.Resources>
+        <ResourceDictionary>
+            <base:ServiceLocator x:Key="ServiceLocator" />
+
+            <converter:IncreaseOneConverter x:Key="IncreaseOneConverter" />
+            <converter:FileExistsToVisibilityConverter x:Key="NullThenHiddenConverter" />
+            <converter:NullToBoolConverter x:Key="NullToBoolConverter" />
+            <converter:FileExistsToNullConverter x:Key="FileExistsToNullConverter" />
+            <converter:AutoSuggestQueryParameterConverter x:Key="AutoSuggestQueryParameterConverter" />
+            <converter:AutoSuggestTextChangedConverter x:Key="AutoSuggestTextChangedConverter" />
+            <converter:Height169RatioConverter x:Key="Height169RatioConverter" />
+            <converter:BoolToOrderSortOrderIconConverter x:Key="BoolToSortOrderConverter" />
+            <converter:BoolToVisibilityConverter x:Key="BoolVisibilityConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+                <ui:IntellisenseResources Source="/ModernWpf;component/DesignTime/DesignTimeResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

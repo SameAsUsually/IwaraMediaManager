@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="IwaraMediaManager.WPF.IwaraControls.IwaraPlayerControl"
+             x:Name="PlayerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IwaraMediaManager.WPF.IwaraControls"
+             xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <SolidColorBrush Color="#000000" Opacity="0.2" x:Key="PlayButtonBackground" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="MediaPlayerGrid" MouseMove="Grid_MouseMove">
+        <Grid x:Name="MediaElementContainer" Background="Black" MouseLeftButtonUp="PlayerBorder_Click" >
+            <Image Source="{Binding ElementName=PlayerControl, Path=SelectedVideoViewModel.ThumbailBitmap}"  />
+            <MediaElement x:Name="IwaraMediaElement" Source="{Binding ElementName=PlayerControl, Path=SelectedVideoViewModel.FilePath}"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" 
+                              MediaOpened="IwaraMediaElement_MediaOpenened" LoadedBehavior="Manual" Loaded="IwaraMediaElement_Loaded"
+                              MediaEnded="IwaraMediaElement_MediaEnded" />
+        </Grid>
+        <Grid x:Name="PlayerControlsGrid" VerticalAlignment="Bottom" Margin="10" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Name="btPlay" Margin="0,0,5,0" Width="30" Height="30" VerticalAlignment="Center" Background="{StaticResource PlayButtonBackground}" Padding="0"
+                            Click="btPlay_Click">
+                <iconpacks:PackIconBoxIcons x:Name="PlayIcon" Kind="RegularPlay" />
+            </Button>
+
+            <Button Grid.Row="1" Grid.Column="1" Name="btLastVideo" Margin="0,0,5,0" Width="30" Height="30" VerticalAlignment="Center" Background="{StaticResource PlayButtonBackground}" Padding="0"
+                            Command="{Binding ElementName=PlayerControl, Path=PreviousVideoCommand}">
+                <iconpacks:PackIconBoxIcons Kind="RegularSkipPrevious" />
+            </Button>
+
+            <Button Grid.Row="1" Grid.Column="2" Name="btNextVideo" Margin="0,0,5,0" Width="30" Height="30" VerticalAlignment="Center" Background="{StaticResource PlayButtonBackground}" Padding="0"
+                            Command="{Binding ElementName=PlayerControl, Path=NextVideoCommand}">
+                <iconpacks:PackIconBoxIcons Kind="RegularSkipNext" />
+            </Button>
+
+            <ToggleButton Grid.Row="1" Grid.Column="3" Name="btAutoNextVideoEnabled" Margin="0,0,5,0" Width="30" Height="30" VerticalAlignment="Center" Background="{StaticResource PlayButtonBackground}" Padding="0">
+                <iconpacks:PackIconBoxIcons Kind="RegularRepeat" />
+            </ToggleButton>
+
+            <Button Grid.Row="1" Grid.Column="4" x:Name="tbtVolume" Width="30" Height="30" Margin="5,0,10,0" Background="{StaticResource PlayButtonBackground}" Padding="0"
+                            Click="tbtVolume_Click" >
+                <iconpacks:PackIconBoxIcons Kind="RegularVolumeFull" />
+            </Button>
+
+            <Slider Grid.Column="4" Name="slVolume" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" Visibility="Collapsed" Height="100"
+                        MouseLeave="MouseLeave_FadeOut" MouseEnter="MouseEnter_StopFadeOut" Orientation="Vertical" Maximum="1" Minimum="0"
+                    Value="{Binding ElementName=IwaraMediaElement, Path=Volume}"/>
+
+            <Slider Grid.Row="1" Grid.Column="5" x:Name="slProgress" IsMoveToPointEnabled="True" PreviewMouseLeftButtonUp="slProgress_PreviewMouseLeftButtonUp" MouseLeftButtonUp="slProgress_MouseLeftButtonUp" PreviewMouseLeftButtonDown="slProgress_PreviewMouseLeftButtonDown" />
+
+            <Button Grid.Row="1" Grid.Column="6" Width="30" Height="30" Margin="10,0,0,0" Background="{StaticResource PlayButtonBackground}" Click="FullscreenButton_Click" Padding="0">
+                <iconpacks:PackIconBoxIcons Kind="RegularFullscreen" />
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

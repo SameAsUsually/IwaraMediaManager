@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IwaraMediaManager.Wpf", "WPF.IwaraMediaManager\IwaraMediaManager.Wpf.csproj", "{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IwaraMediaManager.DatabaseManager", "IwaraMediaManager.DatabaseManager\IwaraMediaManager.DatabaseManager.csproj", "{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IwaraMediaManager.Core", "IwaraMediaManager.Core\IwaraMediaManager.Core.csproj", "{99B70FBB-5787-487B-B5AF-2379848A934E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IwaraMediaManager.Models", "IwaraMediaManager.Models\IwaraMediaManager.Models.csproj", "{3432F3AF-CCD2-41CF-A021-B756ABAAC712}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Debug|x64.ActiveCfg = Debug|x64
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Debug|x64.Build.0 = Debug|x64
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Release|x64.ActiveCfg = Release|x64
+		{7FE0DAB5-CAFC-4096-A671-72052F4A1AA3}.Release|x64.Build.0 = Release|x64
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Debug|x64.Build.0 = Debug|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Release|x64.ActiveCfg = Release|Any CPU
+		{A6D0B91E-8D45-4855-872A-7BD9CAC254B1}.Release|x64.Build.0 = Release|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Debug|x64.ActiveCfg = Debug|x64
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Debug|x64.Build.0 = Debug|x64
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Release|x64.ActiveCfg = Release|Any CPU
+		{99B70FBB-5787-487B-B5AF-2379848A934E}.Release|x64.Build.0 = Release|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Debug|x64.Build.0 = Debug|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Release|x64.ActiveCfg = Release|Any CPU
+		{3432F3AF-CCD2-41CF-A021-B756ABAAC712}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6F64879-FDE4-4899-A46A-4BA04D3173DE}
+	EndGlobalSection
+EndGlobal

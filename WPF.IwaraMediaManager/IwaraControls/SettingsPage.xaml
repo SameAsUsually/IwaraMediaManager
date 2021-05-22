@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="IwaraMediaManager.WPF.IwaraControls.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:local="clr-namespace:IwaraMediaManager.WPF.IwaraControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="SettingsBackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Left"
+                        RenderOptions.BitmapScalingMode="Fant" UseLayoutRounding="true">
+            <Image.OpacityMask>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="#00FFFFFF"/>
+                        <GradientStop Offset="0.5" Color="Black"/>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Brush x:Key="TextBoxBackground">#20000000</Brush>
+            </Grid.Resources>
+
+            <Label FontSize="20" FontWeight="DemiBold" Margin="0,20" Padding="20,10" Background="#0AFFFFFF" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right">Settings</Label>
+
+            <ScrollViewer Grid.Row="1" MinWidth="500" HorizontalAlignment="Right" Margin="20" Background="#0AFFFFFF">
+                <StackPanel Margin="10">
+                    <Label Content="Artist folder path: " FontSize="15" FontWeight="Bold" />
+                    <DockPanel HorizontalAlignment="Stretch">
+                        <Button x:Name="ButtonArtistFolderPath" DockPanel.Dock="Right" Width="30" Height="30" Click="ButtonArtistFolderPath_Click" 
+                                        VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" Padding="0">
+                            <iconpacks:BoxIcons Kind="RegularFolderOpen" />
+                        </Button>
+                        <TextBox x:Name="TextBoxArtistFolderPath" Width="Auto" Background="{StaticResource TextBoxBackground}" 
+                                         HorizontalAlignment="Stretch" IsReadOnly="True" VerticalContentAlignment="Center" />
+                    </DockPanel>
+
+                    <Label Content="Maximum videos per page: " FontSize="15" FontWeight="Bold" Margin="0,20,0,0" />
+                    <ui:NumberBox x:Name="NumericMaxVideosPerPage" SpinButtonPlacementMode="Inline" Background="{StaticResource TextBoxBackground}" ValueChanged="NumericMaxVideosPerPage_ValueChanged" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <Label Content="Thumpnail size: " FontSize="15" FontWeight="Bold" />
+                        <Label Content="{Binding ElementName=ThumpnailSizeSlider, Path=Value}" FontSize="15" FontWeight="Bold" />
+                    </StackPanel>
+                    <Slider x:Name="ThumpnailSizeSlider" Minimum="100" Maximum="500"
+                                    AutoToolTipPlacement="BottomRight" Background="{StaticResource TextBoxBackground}" Padding="10"
+                                    TickFrequency="10" TickPlacement="BottomRight" IsSnapToTickEnabled="True" ValueChanged="ThumpnailSizeSlider_ValueChanged" />
+                    <GroupBox Margin="0, 20, 0, 0" Style="{StaticResource MahApps.Styles.GroupBox}">
+                        <GroupBox.Header>
+                            <Label FontSize="15" FontWeight="Black">Theme</Label>
+                        </GroupBox.Header>
+                        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged" Background="{StaticResource TextBoxBackground}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Height" Value="30" />
+                                    <Setter Property="Margin" Value="2" />
+                                    <Setter Property="Opacity" Value="0.9" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                                          Margin="0"
+                                                          BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                                          Background="{TemplateBinding Panel.Background}"
+                                                          Name="Bd"
+                                                          SnapsToDevicePixels="True"
+                                                                CornerRadius="7">
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <MultiTrigger>
+                                                        <MultiTrigger.Conditions>
+                                                            <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                                        </MultiTrigger.Conditions>
+                                                        <Setter Property="Panel.Background" TargetName="Bd" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                        <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                                            <Setter.Value>
+                                                                <SolidColorBrush>#FFDADADA</SolidColorBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </MultiTrigger>
+                                                    <MultiTrigger>
+                                                        <MultiTrigger.Conditions>
+                                                            <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                                        </MultiTrigger.Conditions>
+                                                        <Setter Property="Panel.Background" TargetName="Bd" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                        <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                                            <Setter.Value>
+                                                                <SolidColorBrush Color="White"></SolidColorBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="Border.BorderThickness" Value="2" />
+                                                        <Setter Property="Panel.Background" TargetName="Bd" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </MultiTrigger>
+                                                    <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                        <Setter Property="Panel.Background" TargetName="Bd" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </Trigger>
+                                                    <Trigger Property="UIElement.IsEnabled" Value="False">
+                                                        <Setter Property="TextElement.Foreground" TargetName="Bd">
+                                                            <Setter.Value>
+                                                                <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="2" HorizontalAlignment="Stretch" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                            <ListBoxItem x:Name="Taupe" Background="#736845" />
+                            <ListBoxItem x:Name="Sienna" Background="#87492B" />
+                            <ListBoxItem x:Name="Pink" Background="#CA62AD" />
+                            <ListBoxItem x:Name="Magenta" Background="#B40763" />
+                            <ListBoxItem x:Name="Red" Background="#BE1707" />
+                            <ListBoxItem x:Name="Crimson" Background="#890725" />
+                            <ListBoxItem x:Name="Lime" Background="#8AA407" />
+                            <ListBoxItem x:Name="Green" Background="#548E19" />
+                            <ListBoxItem x:Name="Emerald" Background="#077507" />
+                            <ListBoxItem x:Name="Teal" Background="#07908E" />
+                            <ListBoxItem x:Name="Cyan" Background="#1D88BC" />
+                            <ListBoxItem x:Name="Blue" Background="#0767B3" />
+                            <ListBoxItem x:Name="Cobalt" Background="#0747C6" />
+                            <ListBoxItem x:Name="Purple" Background="#574EB9" />
+                            <ListBoxItem x:Name="Indigo" Background="#5C07D3" />
+                            <ListBoxItem x:Name="Violet" Background="#8F07D3" />
+                            <ListBoxItem x:Name="Mauve" Background="#655475" />
+                            <ListBoxItem x:Name="Orange" Background="#CF5A07" />
+                            <ListBoxItem x:Name="Amber" Background="#C7890F" />
+                            <ListBoxItem x:Name="Yellow" Background="#D2B90C" />
+                            <ListBoxItem x:Name="Brown" Background="#6F4F2A" />
+                            <ListBoxItem x:Name="Olive" Background="#5E7357" />
+                            <ListBoxItem x:Name="Steel" Background="#576573" />
+                        </ListBox>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource MahApps.Styles.GroupBox}" Margin="0, 20, 0, 0">
+                        <GroupBox.Header>
+                            <DockPanel LastChildFill="True">
+                                <Label FontSize="15" FontWeight="Black" VerticalAlignment="Center">Iwara Account</Label>
+                                <Button Height="20" Width="20" HorizontalAlignment="Right" Background="Transparent" Click="Button_SaveLoginInformation" Padding="0">
+                                    <iconpacks:BoxIcons Kind="SolidSave" />
+                                </Button>
+                            </DockPanel>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <Label Content="Name:" FontSize="15" FontWeight="Bold" />
+                            <TextBox x:Name="TextBoxUserName" Background="{StaticResource TextBoxBackground}" />
+                            <Label Content="Password:" FontSize="15" FontWeight="Bold" />
+                            <PasswordBox x:Name="TextBoxPassword" Background="{StaticResource TextBoxBackground}" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

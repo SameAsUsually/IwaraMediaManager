@@ -1,0 +1,63 @@
+section#content > .container {
+    background-color: rgb(40,40,40) !important;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: silver;
+    width: auto;
+}
+
+.node.node-teaser h3.title a {
+    color: silver;
+}
+
+.node-info {
+    background-color: rgb(40,40,40) !important;
+    color: silver
+}
+
+.node-buttons {
+    background-color: rgb(40,40,40) !important;
+    color: silver
+}
+
+.field-item {
+    background-color: rgb(40,40,40) !important;
+    color: silver
+}
+
+.view-profile.view-display-id-block {
+    background-color: rgb(40,40,40) !important;
+}
+    
+body {
+    background-color: rgb(50,50,50) !important;
+    color: silver
+}
+
+.block-extra-content {
+    display: none
+}
+
+footer {
+    background-color: rgb(40,40,40) !important;
+}
+
+.block li a.session-active {
+    color: silver !important;
+    background-color: inherit !important;
+}
+
+.col-sm-6 {
+    width: 100%;
+    margin-top: 15pt;
+}
+
+.view-videos.view-display-id-page_1 .views-row, .view-videos.view-display-id-page_2 .views-row, .view-videos.view-display-id-block_1 .views-row {
+    padding-bottom: 0px;
+}
+
+#block-views-likes-block, #block-block-9 {
+    display: none;
+}

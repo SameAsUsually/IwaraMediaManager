@@ -1,0 +1,494 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Iwara Media Manager</AssemblyName>
+    <RootNamespace>IwaraMediaManager.WPF</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>iwaraicon_jEt_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\IwaraIcon.png" />
+    <None Remove="Images\IwaraIcon100x100.png" />
+    <None Remove="Images\IwaraIcon24x24.png" />
+    <None Remove="Images\IwaraIcon48x48.png" />
+    <None Remove="Images\Loading.png" />
+    <None Remove="Images\SettingsPage\198a82d4352e3b92ac009f017a653a56.png" />
+    <None Remove="Images\SettingsPage\2d5a8ff437952d9e30005956dc06d12e.png" />
+    <None Remove="Images\SettingsPage\310890ecae9b1d8ceecc9934489d7564.png" />
+    <None Remove="Images\SettingsPage\36158d536db19fdd9a046b8df79eade7.png" />
+    <None Remove="Images\SettingsPage\3af95ab60341c65436c4709ad5d8d521.png" />
+    <None Remove="Images\SettingsPage\4539c31ba5f635946a04f77113cabc38.png" />
+    <None Remove="Images\SettingsPage\46b3e90ac4a7ad506f12199d91793758.png" />
+    <None Remove="Images\SettingsPage\4c5d8db50d332b89183df2150b19a116.png" />
+    <None Remove="Images\SettingsPage\5077a77e6c5039116c2a1496016ec517.png" />
+    <None Remove="Images\SettingsPage\50873e7321ee6938f45ed7356be4b621.png" />
+    <None Remove="Images\SettingsPage\50bd169dabeed49f21f1f352215f2376.png" />
+    <None Remove="Images\SettingsPage\511dd48dedc32eaf00daefe6d735d366.png" />
+    <None Remove="Images\SettingsPage\54f7f4807dee2905ae6e037b698de3f9.png" />
+    <None Remove="Images\SettingsPage\5669742c53ec4f66d944c45009acf0e3.png" />
+    <None Remove="Images\SettingsPage\5b568e6aec6a448e76e6755fc903cd86.png" />
+    <None Remove="Images\SettingsPage\6014a00a7887af5ecb9594f0fa4b8bfd.png" />
+    <None Remove="Images\SettingsPage\66144e2ad21a801ca75c052f2a4a445a.png" />
+    <None Remove="Images\SettingsPage\68498decd5928009904a97bcf3b38c76.png" />
+    <None Remove="Images\SettingsPage\691f5f85d378e4363f374b24a80844de.png" />
+    <None Remove="Images\SettingsPage\6a39f40a908614590bab87cc83c241d2.png" />
+    <None Remove="Images\SettingsPage\6d997dbb4fc858d61d2e40f0f01e6e4a.png" />
+    <None Remove="Images\SettingsPage\75130b67c2f5f32e9e317ea2fb4ada1e.png" />
+    <None Remove="Images\SettingsPage\75c845f1e48eefc08a96d48ce105ab2a.png" />
+    <None Remove="Images\SettingsPage\75e39a0b781c4759f628b1d786611708.png" />
+    <None Remove="Images\SettingsPage\7ce1c1a8d46e42454e905ece8d329658.png" />
+    <None Remove="Images\SettingsPage\7e0c74e286e49005ff9c1132fc538bd7.png" />
+    <None Remove="Images\SettingsPage\7f21a621aea097557d0c9c8f805bfc40.png" />
+    <None Remove="Images\SettingsPage\80ab7b2956fdd8be63236af3c175afaa.png" />
+    <None Remove="Images\SettingsPage\80d2ce9b6f3c61cc9e5897d905691490.png" />
+    <None Remove="Images\SettingsPage\823dd7f1fe7141fc955c7e3f82c9551c.png" />
+    <None Remove="Images\SettingsPage\834400b62baa69773f3e2a4af348b1a6.png" />
+    <None Remove="Images\SettingsPage\83a3678d0ee8c7d31357e5c6ca921b95.png" />
+    <None Remove="Images\SettingsPage\86eddb3b8a5aabf3be50364c7c7cecc1.png" />
+    <None Remove="Images\SettingsPage\8e910e3cf132bfe9b97d5f267e269ec8.png" />
+    <None Remove="Images\SettingsPage\9d9f428427561b1fde10882987c2caab.png" />
+    <None Remove="Images\SettingsPage\a0a70669b7e6ab7060f3c87ce35032f0.png" />
+    <None Remove="Images\SettingsPage\a44c18efdcb80561a6bb5aaaf3435771.png" />
+    <None Remove="Images\SettingsPage\a9da09750ded2ff017e5d8272e11ebd7.png" />
+    <None Remove="Images\SettingsPage\aa1bb5153f3a7c8e19f77e520188ac24.png" />
+    <None Remove="Images\SettingsPage\ac70b49abcf5e6cf5912e07950a91fbe.png" />
+    <None Remove="Images\SettingsPage\adf67fd51637b1c569dbc364a358bc83.png" />
+    <None Remove="Images\SettingsPage\afe29333071a6969f051a8c7a199eb46.png" />
+    <None Remove="Images\SettingsPage\b37cdc8bb799254fb251c3a68fdda92c.png" />
+    <None Remove="Images\SettingsPage\b5641a3b616155f680ae11981347ab52.png" />
+    <None Remove="Images\SettingsPage\b5ca9f854d576c7253dc9b125f6c2a5f.png" />
+    <None Remove="Images\SettingsPage\b810ae2571c582b5519aadaddc7424c1.png" />
+    <None Remove="Images\SettingsPage\ba45e06c7d0d334622129088a8273a64.png" />
+    <None Remove="Images\SettingsPage\c1b789ad81dd0057e83370f6459bfc0c.png" />
+    <None Remove="Images\SettingsPage\c3fcb2c2f59216f5c961624c84f62aac.png" />
+    <None Remove="Images\SettingsPage\c48868dc34a07beecef41f60687bf734.png" />
+    <None Remove="Images\SettingsPage\c6436f411545f057f768ec9fc4becec6.png" />
+    <None Remove="Images\SettingsPage\c6ccfed96b8594bf8ea2aadd1166d00f.png" />
+    <None Remove="Images\SettingsPage\c70c0cfcaf6fa92922e225f92f6fc3ea.png" />
+    <None Remove="Images\SettingsPage\c9ae402bca99bd4eedc335e2b6eeae7e.png" />
+    <None Remove="Images\SettingsPage\c9eef66aa9065fb9c53f7320cf57a889.png" />
+    <None Remove="Images\SettingsPage\ce2c200a34cbdb514001a724502b4ebf.png" />
+    <None Remove="Images\SettingsPage\d02083c0a9b56c92ecbdab4f89d71cf6.png" />
+    <None Remove="Images\SettingsPage\d08ced16eaf262c6e153ebf2d87b3e32.png" />
+    <None Remove="Images\SettingsPage\d0a937be3f2522e2f4415eaa872420e2.png" />
+    <None Remove="Images\SettingsPage\d7677736e4dacb2abfb1434bcec86043.png" />
+    <None Remove="Images\SettingsPage\e103f1047452a5593582567cd98134bf.png" />
+    <None Remove="Images\SettingsPage\e27b71efa0c49796abdaeb16215a62e6.png" />
+    <None Remove="Images\SettingsPage\e439ce1ce25587bffd9814f7ab34ceb3.png" />
+    <None Remove="Images\SettingsPage\e88a4b309cb17474a52a224983c89920.png" />
+    <None Remove="Images\SettingsPage\f37b46079fdc7fb2d7abdfd16da59f76.png" />
+    <None Remove="Images\SettingsPage\f3cab7dbe549ad3509ee433a21d36869.gif" />
+    <None Remove="Images\SettingsPage\f4aebba99a34fdff29ea8ff9504bd82a.png" />
+    <None Remove="Images\SettingsPage\f53ae3bb07d5e251c2fd36a25ae51a84.png" />
+    <None Remove="Images\SettingsPage\fcfc6948e376e2332c992cb133849638.png" />
+    <None Remove="Images\SettingsPage\fcfc9e25d3800a1e34c39b52917fce58.png" />
+    <None Remove="Images\SettingsPage\mai_sakurajima___bikini_by_eyefly18_dcpk2yi-pre.png" />
+    <None Remove="Images\SettingsPage\SettingsLogo2.png" />
+    <None Remove="Images\SettingsPage\SettingsLogo4.png" />
+    <None Remove="Images\SettingsPage\SettingsLogo5.png" />
+    <None Remove="Images\SettingsPage\SettingsLogo6.png" />
+    <None Remove="Images\SettingsPage\SettingsLogo7.png" />
+    <None Remove="Images\Wide310x150Logo.scale-400.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.4.5" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.818.41" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.4" />
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <CefBinaries Include="$(SolutionDir)CEF\$(UnmanagedPlatform)\*.*" />
+      <LocaleFiles Include="$(SolutionDir)CEF\locales\*.*" />
+      <SubProcessFiles Include="$(SolutionDir)$(UnmanagedPlatform)\$(Configuration)\CefSharp.BrowserSubprocess.exe" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CefBinaries)" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="@(LocaleFiles)" DestinationFolder="$(TargetDir)locales" />
+    <Copy SourceFiles="@(SubProcessFiles)" DestinationFolder="$(TargetDir)" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IwaraMediaManager.Core\IwaraMediaManager.Core.csproj" />
+    <ProjectReference Include="..\IwaraMediaManager.DatabaseManager\IwaraMediaManager.DatabaseManager.csproj" />
+    <ProjectReference Include="..\IwaraMediaManager.Models\IwaraMediaManager.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\IwaraIcon24x24.png" />
+    <Resource Include="Images\IwaraIcon48x48.png" />
+    <Resource Include="Images\Loading.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\IwaraIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\IwaraIcon100x100.png" />
+    <Resource Include="Images\Wide310x150Logo.scale-400.png" />
+    <Content Include="Images\SettingsPage\198a82d4352e3b92ac009f017a653a56.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\2d5a8ff437952d9e30005956dc06d12e.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\310890ecae9b1d8ceecc9934489d7564.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\36158d536db19fdd9a046b8df79eade7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\3af95ab60341c65436c4709ad5d8d521.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\4539c31ba5f635946a04f77113cabc38.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\46b3e90ac4a7ad506f12199d91793758.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\4c5d8db50d332b89183df2150b19a116.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\5077a77e6c5039116c2a1496016ec517.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\50873e7321ee6938f45ed7356be4b621.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\50bd169dabeed49f21f1f352215f2376.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\511dd48dedc32eaf00daefe6d735d366.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\54f7f4807dee2905ae6e037b698de3f9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\5669742c53ec4f66d944c45009acf0e3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\5b568e6aec6a448e76e6755fc903cd86.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\6014a00a7887af5ecb9594f0fa4b8bfd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\66144e2ad21a801ca75c052f2a4a445a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\68498decd5928009904a97bcf3b38c76.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\691f5f85d378e4363f374b24a80844de.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\6a39f40a908614590bab87cc83c241d2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\6d997dbb4fc858d61d2e40f0f01e6e4a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\75130b67c2f5f32e9e317ea2fb4ada1e.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\75c845f1e48eefc08a96d48ce105ab2a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\75e39a0b781c4759f628b1d786611708.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\7ce1c1a8d46e42454e905ece8d329658.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\7e0c74e286e49005ff9c1132fc538bd7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\7f21a621aea097557d0c9c8f805bfc40.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\80ab7b2956fdd8be63236af3c175afaa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\80d2ce9b6f3c61cc9e5897d905691490.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\823dd7f1fe7141fc955c7e3f82c9551c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\834400b62baa69773f3e2a4af348b1a6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\83a3678d0ee8c7d31357e5c6ca921b95.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\86eddb3b8a5aabf3be50364c7c7cecc1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\8e910e3cf132bfe9b97d5f267e269ec8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\9d9f428427561b1fde10882987c2caab.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\a0a70669b7e6ab7060f3c87ce35032f0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\a44c18efdcb80561a6bb5aaaf3435771.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\a9da09750ded2ff017e5d8272e11ebd7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\aa1bb5153f3a7c8e19f77e520188ac24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\ac70b49abcf5e6cf5912e07950a91fbe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\adf67fd51637b1c569dbc364a358bc83.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\afe29333071a6969f051a8c7a199eb46.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\b37cdc8bb799254fb251c3a68fdda92c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\b5641a3b616155f680ae11981347ab52.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\b5ca9f854d576c7253dc9b125f6c2a5f.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\b810ae2571c582b5519aadaddc7424c1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\ba45e06c7d0d334622129088a8273a64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c1b789ad81dd0057e83370f6459bfc0c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c3fcb2c2f59216f5c961624c84f62aac.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c48868dc34a07beecef41f60687bf734.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c6436f411545f057f768ec9fc4becec6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c6ccfed96b8594bf8ea2aadd1166d00f.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c70c0cfcaf6fa92922e225f92f6fc3ea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c9ae402bca99bd4eedc335e2b6eeae7e.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\c9eef66aa9065fb9c53f7320cf57a889.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\ce2c200a34cbdb514001a724502b4ebf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\d02083c0a9b56c92ecbdab4f89d71cf6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\d08ced16eaf262c6e153ebf2d87b3e32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\d0a937be3f2522e2f4415eaa872420e2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\d7677736e4dacb2abfb1434bcec86043.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\e103f1047452a5593582567cd98134bf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\e27b71efa0c49796abdaeb16215a62e6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\e439ce1ce25587bffd9814f7ab34ceb3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\e88a4b309cb17474a52a224983c89920.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\f37b46079fdc7fb2d7abdfd16da59f76.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\f3cab7dbe549ad3509ee433a21d36869.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\f4aebba99a34fdff29ea8ff9504bd82a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\f53ae3bb07d5e251c2fd36a25ae51a84.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\fcfc6948e376e2332c992cb133849638.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\fcfc9e25d3800a1e34c39b52917fce58.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\mai_sakurajima___bikini_by_eyefly18_dcpk2yi-pre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\SettingsLogo2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\SettingsLogo4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\SettingsLogo5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\SettingsLogo6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SettingsPage\SettingsLogo7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-11076209.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-11156163.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-17932427.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-18480917.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-19159869.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-1964011.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-20346354.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-20361646.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-20373526.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-20444379.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-4368125.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-4743669.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-4903833.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-4952273.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-5697547.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-5945411.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6010733.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6084158.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6336758.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6458496.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6466296.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-6755956.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7140972.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7232900.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7307695.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7352568.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7459311.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7481591.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-758935.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7614557.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7675407.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\SettingBackgrounds\post-image-7743350.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="IwaraCss.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- TODO: These updates are currently required because CefSharp.Wpf specifies
+         <Private>false</Private>, which means these libraries will not be specified in
+         the .deps.json file, and so the CoreCLR wouldn't load these. -->
+    <Reference Update="CefSharp">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.Core">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.Wpf">
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
+  </ItemGroup>
+</Project>

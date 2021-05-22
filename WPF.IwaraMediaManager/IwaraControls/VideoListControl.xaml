@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="IwaraMediaManager.WPF.IwaraControls.VideoListControl" x:Name="VideoList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IwaraMediaManager.WPF.IwaraControls"
+             xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ui:ListView x:Name="VideoListBox" IsSynchronizedWithCurrentItem="True" Background="Transparent"
+                    ItemsSource="{Binding ElementName=VideoList, Path=VideoCollectionView}" SelectedItem="{Binding ElementName=VideoList, Path=SelectedVideo}" SelectionChanged="VideoListBox_SelectionChanged"
+                    HorizontalContentAlignment="Stretch"  
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.PanningMode="VerticalOnly">
+            <ui:ListView.Resources>
+                <Style TargetType="TextBlock" x:Key="DataTemplateTextBox">
+                    <Setter Property="TextTrimming" Value="WordEllipsis" />
+                    <Setter Property="Background" Value="#A000" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Margin" Value="4" />
+                    <Setter Property="TextAlignment" Value="Center" />
+                </Style>
+
+                <BitmapImage x:Key="ThumbnailPlaceholder" UriSource="/Images/Loading.png" DecodePixelWidth="320" />
+            </ui:ListView.Resources>
+            <ui:ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="GroupItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True" BorderThickness="1">
+                                            <Expander.Style>
+                                                <Style TargetType="Expander">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                </Style>
+                                            </Expander.Style>
+                                            <Expander.Header>
+                                                <TextBlock Text="{Binding Name, StringFormat={}{0:dd.MM.yyyy}}" Foreground="{StaticResource SystemControlPageTextBaseHighBrush}" FontSize="20" Margin="10" />
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ui:ListView.GroupStyle>
+            <ui:ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ui:ListView.ItemsPanel>
+            <ui:ListView.ItemContainerStyle>
+                <Style TargetType="ui:ListViewItem">
+                    <Setter Property="Width" Value="{Binding ElementName=VideoList, Path=ThumpnailWidth}" />
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <ScaleTransform x:Name="transform" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ui:ListViewItem">
+                                <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                      Margin="2"
+                                      BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                      Background="{TemplateBinding Panel.Background}"
+                                      Name="Bd"
+                                      SnapsToDevicePixels="True">
+                                    <ContentPresenter Content="{TemplateBinding ContentControl.Content}"
+                                           ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                           ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                           HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                           SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
+                                        <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{StaticResource SystemAccentColor}"></SolidColorBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Panel.Background" TargetName="Bd">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{StaticResource SystemAccentColor}" Opacity="0.8"></SolidColorBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </MultiTrigger>
+                                    <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                        <Setter Property="Panel.Background" TargetName="Bd">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{StaticResource SystemAccentColor}" Opacity="1"></SolidColorBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="UIElement.IsEnabled" Value="False">
+                                        <Setter Property="TextElement.Foreground" TargetName="Bd">
+                                            <Setter.Value>
+                                                <DynamicResource ResourceKey="{x:Static SystemColors.ActiveCaptionTextBrush}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2" />
+                                                    <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleY" From="0" Duration="0:0:.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ui:ListView.ItemContainerStyle>
+
+            <ui:ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#09FFFFFF">
+                        <Image Grid.RowSpan="2" Stretch="Uniform"
+                                   RenderOptions.BitmapScalingMode="Linear" Margin="4" VerticalAlignment="Top"
+                                   Source="{Binding ThumbailBitmap, Converter={StaticResource FileExistsToNullConverter}, TargetNullValue={StaticResource ThumbnailPlaceholder}}" />
+
+                        <iconpacks:PackIconBoxIcons Kind="SolidHeart" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" />
+                        
+                        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Text="File does not exist!" 
+                                   Foreground="IndianRed" FontSize="14" Background="#C0FFFFFF" Padding="5" FontWeight="Bold"
+                                   Visibility="{Binding FilePath, Converter={StaticResource NullThenHiddenConverter}}" />
+
+                        <TextBlock Text="{Binding Artist.Name}" FontSize="11" VerticalAlignment="Top" Style="{StaticResource DataTemplateTextBox}" HorizontalAlignment="Right" />
+                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Bottom" 
+                                       LineHeight="18" MaxHeight="50" LineStackingStrategy="BlockLineHeight"
+                                       Style="{StaticResource DataTemplateTextBox}" />
+                    </Grid>
+                </DataTemplate>
+            </ui:ListView.ItemTemplate>
+        </ui:ListView>
+    </Grid>
+</UserControl>
