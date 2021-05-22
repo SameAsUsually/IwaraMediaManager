@@ -45,14 +45,14 @@ namespace IwaraMediaManager.WPF.IwaraControls
             var password = TextBoxPassword.Password;
 
             SettingsLoader settingsLoader = new SettingsLoader();
-            await settingsLoader.SetSetting(new Setting(Setting.ACCOUNT_NAME, name));
-            await settingsLoader.SetSetting(new Setting(Setting.ACCOUNT_PASSWORD, password));
+            await settingsLoader.SetSettingAsync(new Setting(Setting.ACCOUNT_NAME, name));
+            await settingsLoader.SetSettingAsync(new Setting(Setting.ACCOUNT_PASSWORD, password));
         }
 
         private async void NumericMaxVideosPerPage_ValueChanged(ModernWpf.Controls.NumberBox sender, ModernWpf.Controls.NumberBoxValueChangedEventArgs args)
         {
             var settingsLoader = new SettingsLoader();
-            await settingsLoader.SetSetting(new Setting(Setting.MAXVIDEOSPERPAGE, args.NewValue.ToString()));
+            await settingsLoader.SetSettingAsync(new Setting(Setting.MAXVIDEOSPERPAGE, args.NewValue.ToString()));
         }
 
         private async void ThumpnailSizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -60,7 +60,7 @@ namespace IwaraMediaManager.WPF.IwaraControls
             if (this.IsInitialized)
             {
                 var settingsLoader = new SettingsLoader();
-                await settingsLoader.SetSetting(new Setting(Setting.THUMPNAILSIZE, e.NewValue.ToString()));
+                await settingsLoader.SetSettingAsync(new Setting(Setting.THUMPNAILSIZE, e.NewValue.ToString()));
             }
         }
 
@@ -70,7 +70,7 @@ namespace IwaraMediaManager.WPF.IwaraControls
             ThemeManager.Current.AccentColor = color;
 
             SettingsLoader settingsLoader = new SettingsLoader();
-            await settingsLoader.SetSetting(new Setting(Setting.COLORTHEME, color.ToString()));
+            await settingsLoader.SetSettingAsync(new Setting(Setting.COLORTHEME, color.ToString()));
         }
     }
 }

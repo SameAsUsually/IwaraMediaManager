@@ -1,6 +1,7 @@
 ﻿using IwaraMediaManager.Core.Interfaces;
 using IwaraMediaManager.DatabaseManager.Loader;
 using IwaraMediaManager.Models;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace IwaraMediaManager.Core.Provider
 {
@@ -33,7 +35,7 @@ namespace IwaraMediaManager.Core.Provider
                 return new List<Video>(videos);
             }
 
-            return null;
+            return new List<Video>();
         }
 
         private async Task<Setting> GetVideoPathSettings()
@@ -42,7 +44,11 @@ namespace IwaraMediaManager.Core.Provider
             var videoPathSetting = await settingsLoader.GetSettingAsync(Setting.VIDEOPATH);
 
             if (videoPathSetting == null)
-                await SetVideoPathDialogAsync();
+            {
+                var msgBox = System.Windows.MessageBox.Show("First time starting Iwara Media Manager", "Please select a video folder.");
+                
+                videoPathSetting = await SetVideoPathDialogAsync();
+            }
 
             return videoPathSetting;
         }
@@ -52,15 +58,18 @@ namespace IwaraMediaManager.Core.Provider
             SettingsLoader settingsLoader = new SettingsLoader();
             Setting videoPathSetting = null;
 
-            MessageBox.Show("Please select your video folder.");
-
-            var folderPicker = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-            var result = folderPicker.ShowDialog();
-
-            if (result.HasValue && result.Value)
+            using (var dialog = new CommonOpenFileDialog
             {
-                videoPathSetting = new Setting(Setting.VIDEOPATH, folderPicker.SelectedPath);
-                await settingsLoader.SetSetting(videoPathSetting);
+                IsFolderPicker = true
+            })
+            {
+                CommonFileDialogResult result = dialog.ShowDialog();
+
+                if (result == CommonFileDialogResult.Ok)
+                {
+                    videoPathSetting = new Setting(Setting.VIDEOPATH, dialog.FileName);
+                    await settingsLoader.SetSettingAsync(videoPathSetting);
+                }
             }
 
             return videoPathSetting;

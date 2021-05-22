@@ -1,0 +1,33 @@
+2021-05-22 15:29:28.125 +02:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.201\
+2021-05-22 15:29:28.351 +02:00 [INF] Registered 1 extensions:
+	Default extension
+2021-05-22 15:29:44.411 +02:00 [INF] Initializing upgrade step Select an entrypoint
+2021-05-22 15:29:59.210 +02:00 [INF] Applying upgrade step Select an entrypoint
+2021-05-22 15:30:09.297 +02:00 [INF] Upgrade step Select an entrypoint applied successfully
+2021-05-22 15:30:13.952 +02:00 [INF] Initializing upgrade step Finalize upgrade
+2021-05-22 15:30:19.736 +02:00 [INF] Applying upgrade step Finalize upgrade
+2021-05-22 15:30:19.737 +02:00 [INF] Upgrade step Finalize upgrade applied successfully
+2021-05-22 15:30:24.524 +02:00 [INF] Upgrade has completed. Please review any changes.
+2021-05-22 15:30:24.526 +02:00 [INF] Saving upgrade progress file at C:\Code\IwaraMediaManagerWpf\.upgrade-assistant
+2021-05-22 15:31:48.574 +02:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.201\
+2021-05-22 15:31:48.602 +02:00 [INF] Registered 1 extensions:
+	Default extension
+2021-05-22 15:31:50.270 +02:00 [INF] Loading upgrade progress file at C:\Code\IwaraMediaManagerWpf\.upgrade-assistant
+2021-05-22 15:31:50.306 +02:00 [INF] Initializing upgrade step Select an entrypoint
+2021-05-22 15:31:59.597 +02:00 [INF] Applying upgrade step Select an entrypoint
+2021-05-22 15:32:03.613 +02:00 [INF] Upgrade step Select an entrypoint applied successfully
+2021-05-22 15:32:13.827 +02:00 [INF] Initializing upgrade step Finalize upgrade
+2021-05-22 15:32:20.285 +02:00 [INF] Applying upgrade step Finalize upgrade
+2021-05-22 15:32:20.286 +02:00 [INF] Upgrade step Finalize upgrade applied successfully
+2021-05-22 15:32:24.007 +02:00 [INF] Upgrade has completed. Please review any changes.
+2021-05-22 15:32:24.008 +02:00 [INF] Saving upgrade progress file at C:\Code\IwaraMediaManagerWpf\.upgrade-assistant
+2021-05-22 15:33:02.683 +02:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.201\
+2021-05-22 15:33:02.711 +02:00 [INF] Registered 1 extensions:
+	Default extension
+2021-05-22 15:33:04.319 +02:00 [INF] Initializing upgrade step Select an entrypoint
+2021-05-22 15:33:04.322 +02:00 [INF] Setting entrypoint to user selected project: C:\Code\IwaraMediaManagerWpf\WPF.IwaraMediaManager\IwaraMediaManager.Wpf.csproj
+2021-05-22 15:33:04.522 +02:00 [INF] Initializing upgrade step Finalize upgrade
+2021-05-22 15:33:09.704 +02:00 [INF] Applying upgrade step Finalize upgrade
+2021-05-22 15:33:09.705 +02:00 [INF] Upgrade step Finalize upgrade applied successfully
+2021-05-22 15:33:15.396 +02:00 [INF] Upgrade has completed. Please review any changes.
+2021-05-22 15:33:15.398 +02:00 [INF] Saving upgrade progress file at C:\Code\IwaraMediaManagerWpf\WPF.IwaraMediaManager\.upgrade-assistant

@@ -389,6 +389,7 @@ namespace IwaraMediaManager.Core.ViewModels
             ThumpnailSize = int.Parse((await settingsLoader.GetSettingAsync(Setting.THUMPNAILSIZE))?.Value ?? "320");
 
             var videos = await _VideoProvider.GetVideos();
+            
             videos = videos.OrderBy(x => x.Artist.Name).ThenBy(x => x.Name).ToList();
             foreach (var video in videos)
             {

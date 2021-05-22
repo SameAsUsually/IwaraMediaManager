@@ -47,8 +47,8 @@ namespace WPF.IwaraMediaManager
 
             var serviceLocator = this.FindResource("ServiceLocator") as ServiceLocator;
             serviceLocator.Initialize();
+            
             var mainWindow = new MainWindow();
-
             mainWindow.FontFamily = new System.Windows.Media.FontFamily("Segoe UI");
             mainWindow.Show();
 

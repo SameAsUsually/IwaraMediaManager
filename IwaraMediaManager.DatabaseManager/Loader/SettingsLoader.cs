@@ -20,7 +20,7 @@ namespace IwaraMediaManager.DatabaseManager.Loader
             return setting;
         }
 
-        public async Task SetSetting(Setting setting)
+        public async Task SetSettingAsync(Setting setting)
         {
             using (var dbContext = new DataBaseContext())
             {

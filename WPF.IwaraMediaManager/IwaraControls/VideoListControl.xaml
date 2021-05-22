@@ -132,7 +132,7 @@
                     <Grid Background="#09FFFFFF">
                         <Image Grid.RowSpan="2" Stretch="Uniform"
                                    RenderOptions.BitmapScalingMode="Linear" Margin="4" VerticalAlignment="Top"
-                                   Source="{Binding ThumbailBitmap, Converter={StaticResource FileExistsToNullConverter}, TargetNullValue={StaticResource ThumbnailPlaceholder}}" />
+                                   Source="{Binding ThumbailBitmap, Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource FileExistsToNullConverter}, TargetNullValue={StaticResource ThumbnailPlaceholder}}" />
 
                         <iconpacks:PackIconBoxIcons Kind="SolidHeart" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" />
                         
