@@ -51,9 +51,14 @@
             </DockPanel>
         </Controls:Flyout>
 
-        <Button x:Name="OpenFlyoutButton" Padding="0" Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="OpenFlyoutButton_Click"
+        <Button x:Name="OpenFlyoutButton" Padding="0" Style="{StaticResource MahApps.Styles.Button.Hamburger}" Click="OpenFlyoutButton_Click"
                 Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" Foreground="White">
             <icons:BoxIcons x:Name="ShowVideoListIcon" Kind="SolidCaretDownCircle" Width="30" Height="30"  />
+        </Button>
+
+        <Button x:Name="CloseWindowButton" Padding="0" Style="{StaticResource MahApps.Styles.Button.Hamburger}" Click="CloseWindowButton_Click"
+                Margin="20" VerticalAlignment="Top" HorizontalAlignment="Right" VerticalContentAlignment="Center" Foreground="White">
+            <icons:BoxIcons Kind="RegularArrowBack" Width="30" Height="30" />
         </Button>
     </Grid>
 </Window>

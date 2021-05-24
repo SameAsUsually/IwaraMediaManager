@@ -62,5 +62,10 @@ namespace IwaraMediaManager.WPF.Views
             DoubleAnimation anim3 = new DoubleAnimation(VideosFlyout.IsOpen ? 0 : 180, VideosFlyout.IsOpen ? 180 : 360, TimeSpan.FromSeconds(.2));
             openVideoListButtonTransform.BeginAnimation(RotateTransform.AngleProperty, anim3);
         }
+
+        private void CloseWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
