@@ -17,7 +17,7 @@ namespace IwaraMediaManager.WPF.Views
     /// <summary>
     /// Interaction logic for VideoPlayerWindow.xaml
     /// </summary>
-    public partial class VideoPlayerWindow : MetroWindow
+    public partial class VideoPlayerWindow : Window
     {
         private RotateTransform openVideoListButtonTransform;
         private WindowState nonFullscreenWindowState;
@@ -43,19 +43,14 @@ namespace IwaraMediaManager.WPF.Views
         {
             if (this.WindowState == WindowState.Maximized)
             {
-                ShowCloseButton = true;
-                ShowMaxRestoreButton = true;
-                ShowMinButton = true;
-                this.IgnoreTaskbarOnMaximize = false;
                 this.WindowState = nonFullscreenWindowState;
+                this.WindowStyle = WindowStyle.ToolWindow;
+
             }
             else
             {
-                ShowCloseButton = false;
-                ShowMaxRestoreButton = false;
-                ShowMinButton = false;
-                this.IgnoreTaskbarOnMaximize = true;
                 nonFullscreenWindowState = this.WindowState;
+                this.WindowStyle = WindowStyle.None;
                 this.WindowState = WindowState.Maximized;
             }
         }
