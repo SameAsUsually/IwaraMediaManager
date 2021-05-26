@@ -1,4 +1,4 @@
-# IwaraMediaManagerWpf
+# Iwara Media Manager
 
 A Iwara.TV Client for Windows. 
 You can download, manage and watch your favorite MMDs in a single place. 
