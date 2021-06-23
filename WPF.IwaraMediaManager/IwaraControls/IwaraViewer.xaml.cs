@@ -145,5 +145,13 @@ namespace IwaraMediaManager.WPF.IwaraControls
         {
             Clipboard.SetText(IwaraWebView.CoreWebView2.Source);
         }
+        
+        private void tbAddress_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Return && tbAddress.Text.Contains("iwara.tv"))
+            {
+                IwaraWebView.CoreWebView2.Navigate(tbAddress.Text);
+            }
+        }
     }
 }
