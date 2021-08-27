@@ -12,7 +12,6 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
         BorderBrush="{StaticResource SystemControlAcrylicElementBrush}"
-        BorderThickness="8"
         Icon="/Images/IwaraIcon48x48.png"
         Title="Iwara Media Manager" 
         Height="800" Width="1600" MinWidth="900"
@@ -24,7 +23,7 @@
         DataContext="{Binding Source={StaticResource ServiceLocator}, Path=MainWindowViewModel}">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+        <WindowChrome CaptionHeight="0"  />
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <Storyboard x:Key="FadeOut">
@@ -86,7 +85,7 @@
             </TabItem>
         </TabControl>
 
-        <Grid x:Name="MenuGrid" VerticalAlignment="Top" HorizontalAlignment="Stretch" MouseDown="MainWindow_MouseDown" Background="Transparent" Margin="520,0,0,0" Height="43">
+        <Grid x:Name="MenuGrid" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent" Margin="520,0,0,0" Height="43">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
                 <ToggleButton x:Name="SettingsButton" Click="SettingsButton_Click" Margin="20,5" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Focusable="False" Padding="3,0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">

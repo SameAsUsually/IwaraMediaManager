@@ -2,9 +2,11 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
@@ -20,33 +22,102 @@ namespace IwaraMediaManager.Wpf.Views
         private const int TABINDEX_IWARAVIEWER = 1;
         private const int TABINDEX_DOWNLOADS = 2;
         private const int TABINDEX_SETTINGS = 3;
+        private const int FULLHD_HEIGHT = 1080;
+        private const int SMALL_HEIGHT = 500;
+        private const string FOLDER_SETTINGSBACKGROUNDS = "SettingBackgrounds";
+        private const string FOLDER_SETTINGSPAGE = "SettingsPage";
         private int oldTabItemIndex;
 
         private WindowState oldWindowState;
+        private GridLength oldGridLenght;
+        private bool doRestoreIfMove;
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetCursorPos(out POINT lpPoint);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr MonitorFromWindow(IntPtr handle, uint flags);
+        
+        [DllImport("user32.dll")]
+        private static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFO lpmi);
 
         public MainWindow()
         {
             InitializeComponent();
 
-            this.StateChanged += MainWindow_StateChanged;
-
             VideoPage.NavigateToVideoPageRequested += VideoPage_NavigateToVideoPageRequested;
             VideoPage.IwaraPlayer.FullscreenRequested += IwaraViewer_FullscreenRequested;
             IwaraViewer.FullscreenRequested += IwaraViewer_FullscreenRequested;
+
+            MenuGrid.MouseDown += Titlebar_MouseDown;
+            MenuGrid.PreviewMouseLeftButtonUp += Titlebar_PreviewMouseLeftButtonUp;
+            MenuGrid.PreviewMouseMove += Titlebar_PreviewMouseMove;
         }
 
-        private void MainWindow_StateChanged(object sender, EventArgs e)
+        private void Titlebar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
-                this.BorderThickness = new Thickness(WINDOW_MAX_BORDER_THICKNESS);
-            else if (this.WindowState == WindowState.Normal)
-                this.BorderThickness = new Thickness(0);
+            if (e.ChangedButton != MouseButton.Left)
+                return;
+
+            // On doubleclick
+            if (e.ClickCount == 2)
+            {
+                // If allowed, switch window state
+                if ((ResizeMode == ResizeMode.CanResize) || (ResizeMode == ResizeMode.CanResizeWithGrip))
+                {
+                    if (this.WindowState == WindowState.Normal)
+                        this.WindowState = WindowState.Maximized;
+                    else
+                        this.WindowState = WindowState.Normal;
+                }
+
+                return;
+            }
+            // Allow restore on move if maximized
+            else if (WindowState == WindowState.Maximized)
+            {
+                doRestoreIfMove = true;
+                return;
+            }
+
+            this.DragMove();
+
         }
 
-        private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Titlebar_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            // Disable restore on move
+            doRestoreIfMove = false;
+        }
+
+        private void Titlebar_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            // Only do, if restore on move is allowed
+            if (doRestoreIfMove)
+            {
+                doRestoreIfMove = false;
+
+                // Calculate values
+                double percentHorizontal = e.GetPosition(this).X / ActualWidth;
+                double targetHorizontal = RestoreBounds.Width * percentHorizontal;
+
+                double percentVertical = e.GetPosition(this).Y / ActualHeight;
+                double targetVertical = RestoreBounds.Height * percentVertical;
+
+                // Force set window state
+                WindowState = WindowState.Normal;
+
+                // Get current mouse position
+                POINT lMousePosition;
+                GetCursorPos(out lMousePosition);
+
+                // Set window location relative to current mouse cursor. This simulates the moving of the window
+                Left = lMousePosition.X - targetHorizontal;
+                Top = lMousePosition.Y - targetVertical;
+
+                DragMove();
+            }
         }
 
         private void IwaraViewer_FullscreenRequested(object sender, bool e)
@@ -60,7 +131,7 @@ namespace IwaraMediaManager.Wpf.Views
                     SetVideosPageFullScreenControls(e);
                     oldWindowState = this.WindowState;
                     this.WindowState = WindowState.Maximized;
-                    this.BorderThickness = new Thickness(0);
+                    //this.BorderThickness = new Thickness(0);
 
                     foreach (var item in TabControl.Items)
                         (item as TabItem).Visibility = Visibility.Collapsed;
@@ -74,8 +145,8 @@ namespace IwaraMediaManager.Wpf.Views
                     SetVideosPageFullScreenControls(e);
                     this.WindowState = oldWindowState;
 
-                    if (this.WindowState == WindowState.Maximized)
-                        this.BorderThickness = new Thickness(WINDOW_MAX_BORDER_THICKNESS);
+                    //if (this.WindowState == WindowState.Maximized)
+                        //this.BorderThickness = new Thickness(WINDOW_MAX_BORDER_THICKNESS);
 
                     foreach (var item in TabControl.Items)
                         if (item is TabItem tabItem && tabItem != SettingsTabItem)
@@ -106,7 +177,6 @@ namespace IwaraMediaManager.Wpf.Views
             }
         }
 
-        private GridLength oldGridLenght;
         private void SetVideosPageFullScreenControls(bool e)
         {
             if (e)
@@ -161,22 +231,22 @@ namespace IwaraMediaManager.Wpf.Views
             if (TabControl.SelectedIndex == TABINDEX_VIDEOSPAGE)
             {
                 Storyboard.SetTarget(storyboard, VideoPage);
-                LoadNewBackGroundImage(VideoPage.VideoDetailsBackgroundImage, "SettingsPage", 500);
+                LoadNewBackGroundImage(VideoPage.VideoDetailsBackgroundImage, FOLDER_SETTINGSPAGE, SMALL_HEIGHT);
             }
             else if (TabControl.SelectedIndex == TABINDEX_IWARAVIEWER)
             {
                 Storyboard.SetTarget(storyboard, IwaraViewer);
-                LoadNewBackGroundImage(IwaraViewer.IwaraViewerBackgroundImage, "SettingBackgrounds", 1080);
+                LoadNewBackGroundImage(IwaraViewer.IwaraViewerBackgroundImage, FOLDER_SETTINGSBACKGROUNDS, FULLHD_HEIGHT);
             }
             else if (TabControl.SelectedIndex == TABINDEX_DOWNLOADS)
             {
                 Storyboard.SetTarget(storyboard, DownloadsPage);
-                LoadNewBackGroundImage(DownloadsPage.DownloadsBackgroundImage, "SettingBackgrounds", 1080);
+                LoadNewBackGroundImage(DownloadsPage.DownloadsBackgroundImage, FOLDER_SETTINGSBACKGROUNDS, FULLHD_HEIGHT);
             }
             else if (TabControl.SelectedIndex == TABINDEX_SETTINGS)
             {
                 Storyboard.SetTarget(storyboard, SettingsPage);
-                LoadNewBackGroundImage(SettingsPage.SettingsBackgroundImage, "SettingBackgrounds", 1080);
+                LoadNewBackGroundImage(SettingsPage.SettingsBackgroundImage, FOLDER_SETTINGSBACKGROUNDS, FULLHD_HEIGHT);
             }
 
             storyboard.Begin(this);
@@ -214,5 +284,100 @@ namespace IwaraMediaManager.Wpf.Views
         {
             this.WindowState = WindowState.Minimized;
         }
+
+
+
+
+        #region maximize logic
+        private const int WM_GETMINMAXINFO = 0x0024;
+        private const uint MONITOR_DEFAULTTONEAREST = 0x00000002;
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            ((HwndSource)PresentationSource.FromVisual(this)).AddHook(HookProc);
+        }
+
+        public IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == WM_GETMINMAXINFO)
+            {
+                // We need to tell the system what our size should be when maximized. Otherwise it will cover the whole screen,
+                // including the task bar.
+                MINMAXINFO mmi = (MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(MINMAXINFO));
+
+                // Adjust the maximized size and position to fit the work area of the correct monitor
+                IntPtr monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+
+                if (monitor != IntPtr.Zero)
+                {
+                    MONITORINFO monitorInfo = new MONITORINFO();
+                    monitorInfo.cbSize = Marshal.SizeOf(typeof(MONITORINFO));
+                    GetMonitorInfo(monitor, ref monitorInfo);
+                    RECT rcWorkArea = monitorInfo.rcWork;
+                    RECT rcMonitorArea = monitorInfo.rcMonitor;
+                    mmi.ptMaxPosition.X = Math.Abs(rcWorkArea.Left - rcMonitorArea.Left);
+                    mmi.ptMaxPosition.Y = Math.Abs(rcWorkArea.Top - rcMonitorArea.Top);
+                    mmi.ptMaxSize.X = Math.Abs(rcWorkArea.Right - rcWorkArea.Left);
+                    mmi.ptMaxSize.Y = Math.Abs(rcWorkArea.Bottom - rcWorkArea.Top);
+                }
+
+                Marshal.StructureToPtr(mmi, lParam, true);
+            }
+             
+            return IntPtr.Zero;
+        }
+
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+
+            public RECT(int left, int top, int right, int bottom)
+            {
+                this.Left = left;
+                this.Top = top;
+                this.Right = right;
+                this.Bottom = bottom;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MONITORINFO
+        {
+            public int cbSize;
+            public RECT rcMonitor;
+            public RECT rcWork;
+            public uint dwFlags;
+        }
+
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MINMAXINFO
+        {
+            public POINT ptReserved;
+            public POINT ptMaxSize;
+            public POINT ptMaxPosition;
+            public POINT ptMinTrackSize;
+            public POINT ptMaxTrackSize;
+        }
+        #endregion
     }
 }

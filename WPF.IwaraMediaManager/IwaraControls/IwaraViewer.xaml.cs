@@ -54,7 +54,7 @@ namespace IwaraMediaManager.WPF.IwaraControls
     document.head.appendChild(styleSheet);
 })");
             
-            IwaraWebView.CoreWebView2.NavigationCompleted += (object y, CoreWebView2NavigationCompletedEventArgs x) => { IwaraWebView.Opacity = 1; };
+            //IwaraWebView.CoreWebView2.NavigationCompleted += (object y, CoreWebView2NavigationCompletedEventArgs x) => { IwaraWebView.Opacity = 1; };
             IwaraWebView.CoreWebView2.ContainsFullScreenElementChanged += CoreWebView2_ContainsFullScreenElementChanged;
             IwaraWebView.BringIntoView();
 
