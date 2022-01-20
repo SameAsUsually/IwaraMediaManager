@@ -2,6 +2,7 @@
 using IwaraMediaManager.Models;
 using Microsoft.Web.WebView2.Core;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace IwaraMediaManager.WPF.IwaraControls
         public IwaraViewer()
         {
             InitializeComponent();
+            IwaraWebView.DefaultBackgroundColor = Color.Black;
             InitializeAsync();
         }
 
@@ -44,8 +46,6 @@ namespace IwaraMediaManager.WPF.IwaraControls
 
             await IwaraWebView.EnsureCoreWebView2Async(null);
 
-            IwaraWebView.NavigationCompleted += IwaraWebView_NavigationCompletedSetHeight;
-
             await IwaraWebView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(
 @"document.addEventListener('DOMContentLoaded', function() { 
     var styleSheet = document.createElement('style');
@@ -54,7 +54,6 @@ namespace IwaraMediaManager.WPF.IwaraControls
     document.head.appendChild(styleSheet);
 })");
             
-            //IwaraWebView.CoreWebView2.NavigationCompleted += (object y, CoreWebView2NavigationCompletedEventArgs x) => { IwaraWebView.Opacity = 1; };
             IwaraWebView.CoreWebView2.ContainsFullScreenElementChanged += CoreWebView2_ContainsFullScreenElementChanged;
             IwaraWebView.BringIntoView();
 
@@ -66,12 +65,6 @@ namespace IwaraMediaManager.WPF.IwaraControls
 };";
 
             await IwaraWebView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(@"document.addEventListener('DOMContentLoaded', function() { " + script + @"})");
-        }
-
-        private void IwaraWebView_NavigationCompletedSetHeight(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            IwaraWebView.Height = double.NaN;
-            IwaraWebView.NavigationCompleted -= IwaraWebView_NavigationCompletedSetHeight;
         }
 
         private void CoreWebView2_ContainsFullScreenElementChanged(object sender, object e)
@@ -139,6 +132,11 @@ namespace IwaraMediaManager.WPF.IwaraControls
         {
             if (IwaraWebView.CanGoForward)
                 IwaraWebView.GoForward();
+        }
+
+        private void btReload_Click(object sender, RoutedEventArgs e)
+        {
+            IwaraWebView.Reload();
         }
 
         private void btCopy_Click(object sender, RoutedEventArgs e)

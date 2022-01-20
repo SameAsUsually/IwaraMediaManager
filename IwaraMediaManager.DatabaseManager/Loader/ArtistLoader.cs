@@ -12,7 +12,7 @@ namespace IwaraMediaManager.DatabaseManager.Loader
     public class ArtistLoader
     {
         private VideoLoader VideoLoader;
-        
+
         public ArtistLoader()
         {
             VideoLoader = new VideoLoader();
@@ -26,7 +26,7 @@ namespace IwaraMediaManager.DatabaseManager.Loader
                 artists = GetArtistsFromDirectory(iwaraVideosFolder);
 
                 // First time database inserts
-                for(int i = 0; i < artists.Count; i++)
+                for (int i = 0; i < artists.Count; i++)
                     artists[i] = await SetArtistAsync(artists[i]);
             }
 
@@ -56,7 +56,7 @@ namespace IwaraMediaManager.DatabaseManager.Loader
         public async Task<Artist> SetArtistAsync(Artist artist)
         {
             Artist existingArtist = null;
-            
+
             using (var dbContext = new DatabaseManager.DataBaseContext())
             {
                 existingArtist = dbContext.Artists.Where(x => x.Id == artist.Id || x.FolderPath == artist.FolderPath || x.Name == artist.Name).FirstOrDefault();
@@ -113,7 +113,14 @@ namespace IwaraMediaManager.DatabaseManager.Loader
 
             foreach (string folder in artistFolders)
             {
-                artists.Add(GetArtistFromDirectory(folder));
+                try
+                {
+                    artists.Add(GetArtistFromDirectory(folder));
+                }
+                catch
+                {
+
+                }
             }
 
             return artists;

@@ -17,7 +17,6 @@ namespace IwaraMediaManager.Wpf.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int WINDOW_MAX_BORDER_THICKNESS = 8;
         private const int TABINDEX_VIDEOSPAGE = 0;
         private const int TABINDEX_IWARAVIEWER = 1;
         private const int TABINDEX_DOWNLOADS = 2;
@@ -60,28 +59,25 @@ namespace IwaraMediaManager.Wpf.Views
             if (e.ChangedButton != MouseButton.Left)
                 return;
 
-            // On doubleclick
             if (e.ClickCount == 2)
             {
-                // If allowed, switch window state
                 if ((ResizeMode == ResizeMode.CanResize) || (ResizeMode == ResizeMode.CanResizeWithGrip))
                 {
-                    if (this.WindowState == WindowState.Normal)
-                        this.WindowState = WindowState.Maximized;
+                    if (WindowState == WindowState.Normal)
+                        WindowState = WindowState.Maximized;
                     else
-                        this.WindowState = WindowState.Normal;
+                        WindowState = WindowState.Normal;
                 }
 
                 return;
             }
-            // Allow restore on move if maximized
             else if (WindowState == WindowState.Maximized)
             {
                 doRestoreIfMove = true;
                 return;
             }
 
-            this.DragMove();
+            DragMove();
 
         }
 
@@ -130,7 +126,7 @@ namespace IwaraMediaManager.Wpf.Views
                     SetIwaraViewerFullScreenControls(e);
                     SetVideosPageFullScreenControls(e);
                     oldWindowState = this.WindowState;
-                    this.WindowState = WindowState.Maximized;
+                    WindowState = WindowState.Maximized;
                     //this.BorderThickness = new Thickness(0);
 
                     foreach (var item in TabControl.Items)
@@ -143,7 +139,7 @@ namespace IwaraMediaManager.Wpf.Views
                 {
                     SetIwaraViewerFullScreenControls(e);
                     SetVideosPageFullScreenControls(e);
-                    this.WindowState = oldWindowState;
+                    WindowState = oldWindowState;
 
                     //if (this.WindowState == WindowState.Maximized)
                         //this.BorderThickness = new Thickness(WINDOW_MAX_BORDER_THICKNESS);
@@ -226,7 +222,7 @@ namespace IwaraMediaManager.Wpf.Views
             if (SettingsButton.IsChecked.Value && TabControl.SelectedIndex != TABINDEX_SETTINGS)
                 SettingsButton.IsChecked = false;
 
-            var storyboard = ((Storyboard)this.FindResource("FadeIn"));
+            var storyboard = ((Storyboard)FindResource("FadeIn"));
 
             if (TabControl.SelectedIndex == TABINDEX_VIDEOSPAGE)
             {
@@ -274,15 +270,15 @@ namespace IwaraMediaManager.Wpf.Views
 
         private void MaximiseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Normal)
-                this.WindowState = WindowState.Maximized;
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
             else
-                this.WindowState = WindowState.Normal;
+                WindowState = WindowState.Normal;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
 
@@ -339,10 +335,10 @@ namespace IwaraMediaManager.Wpf.Views
 
             public RECT(int left, int top, int right, int bottom)
             {
-                this.Left = left;
-                this.Top = top;
-                this.Right = right;
-                this.Bottom = bottom;
+                Left = left;
+                Top = top;
+                Right = right;
+                Bottom = bottom;
             }
         }
 
@@ -364,8 +360,8 @@ namespace IwaraMediaManager.Wpf.Views
 
             public POINT(int x, int y)
             {
-                this.X = x;
-                this.Y = y;
+                X = x;
+                Y = y;
             }
         }
 

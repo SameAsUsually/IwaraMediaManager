@@ -34,9 +34,8 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Button Name="btBack" Margin="0,0,5,0" VerticalAlignment="Center" Click="btBack_Click" IsEnabled="{Binding ElementName=IwaraWebView, Path=CanGoBack}">
@@ -47,11 +46,15 @@
                 <iconpacks:BoxIcons Kind="RegularRightArrowCircle" />
             </Button>
 
-            <Button x:Name="btCopy" Grid.Column="2" Margin="0,0,10,0" VerticalAlignment="Center" Click="btCopy_Click">
+            <Button Name="btReload" Grid.Column="2" Margin="0,0,10,0" VerticalAlignment="Center" Click="btReload_Click">
+                <iconpacks:BoxIcons Kind="RegularRefresh" />
+            </Button>
+
+            <Button x:Name="btCopy" Grid.Column="3" Margin="0,0,10,0" VerticalAlignment="Center" Click="btCopy_Click">
                 <iconpacks:BoxIcons Kind="RegularCopy" />
             </Button>
 
-            <TextBox x:Name="tbAddress" Margin="0,0,10,0" Grid.Column="3" VerticalAlignment="Center" Text="{Binding WebViewAdress, Mode=OneWay}" KeyDown="tbAddress_KeyDown" />
+            <TextBox x:Name="tbAddress" Margin="0,2,10,2" Grid.Column="4" VerticalAlignment="Center" Text="{Binding WebViewAdress, Mode=OneWay}" KeyDown="tbAddress_KeyDown"  />
             <!--<ui:AutoSuggestBox Grid.Column="4" Margin="0,0,5,0" FontSize="18"
                                PlaceholderText="Author..." QueryIcon="Find"
                                ItemsSource="{Binding }"/>-->
@@ -67,7 +70,7 @@
 
                 <ww2:WebView2 Name="IwaraWebView"
                     Source="{Binding WebViewAdress, Mode=TwoWay}"
-                    ContentLoading="IwaraWebView_ContentLoading" Height="0" />
+                    ContentLoading="IwaraWebView_ContentLoading" />
             </Grid>
         </Border>
 
