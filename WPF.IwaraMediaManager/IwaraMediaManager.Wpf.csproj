@@ -97,17 +97,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MahApps.Metro" Version="2.4.7" />
-    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.15">
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.902.49" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
-    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
-    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1210.39" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.5" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
 
